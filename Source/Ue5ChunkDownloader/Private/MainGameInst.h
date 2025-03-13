@@ -20,8 +20,13 @@ class UE5CHUNKDOWNLOADER_API UMainGameInst : public UGameInstance
 {
 	GENERATED_BODY()
 	
-                                              // UGameInstance interface
+
    public:
+   // explicit  UMainGameInst( );
+
+
+
+
         virtual void Init() override;
        virtual void Shutdown() override;
 

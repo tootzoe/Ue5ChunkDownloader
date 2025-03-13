@@ -11,20 +11,34 @@
 
 
 
+// UMainGameInst::UMainGameInst() :
+//     bIsDownloadManifestUpToData(false)
+// {
+
+// }
+
 void UMainGameInst::Init()
 {
     Super::Init();
 
     const FString devName = TEXT("TootTestUe5ChunkDownloader");
-    const FString cntBuildID = TEXT("TootDemoKey");
+    const FString cntBuildID = TEXT("PakChunks");  // this is the folder in contect browser
 
     TSharedRef<FChunkDownloader> dloader = FChunkDownloader::GetOrCreate();
     dloader->Initialize("Windows" , 8); // set to 8 the maximum number of downloads that ChunkDownloader will handle at once.
 
 
+
+
+
     dloader->LoadCachedBuild(devName);
+
     TFunction<void(bool)> updFinishedCb = [&](bool){ bIsDownloadManifestUpToData = true; };
     dloader->UpdateBuild(devName , cntBuildID , updFinishedCb);
+
+
+    UE_LOG(LogTemp, Warning, TEXT("Game inst Init........... bIsDownloadManifestUpToData =  %d ") , bIsDownloadManifestUpToData);
+
 }
 
 void UMainGameInst::Shutdown()
@@ -56,6 +70,8 @@ bool UMainGameInst::PatchGame()
     if(bIsDownloadManifestUpToData ){
         TSharedRef<FChunkDownloader> dl = FChunkDownloader::GetChecked();
 
+
+
         for (int32 id :  ChunkDownloadList) {
             int32 tmpStats = static_cast<int32>(dl->GetChunkStatus(id));
             UE_LOG(LogTemp, Warning, TEXT("Chunk %i  status : %i") , id , tmpStats);
@@ -71,7 +87,7 @@ bool UMainGameInst::PatchGame()
 
     UE_LOG(LogTemp, Warning, TEXT("Manifest update Failed........ Can't patch the game......."));
 
-  return false;
+    return false;
 }
 
 void UMainGameInst::OnManifestUpdCompleted(bool isSuccess)

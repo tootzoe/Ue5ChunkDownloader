@@ -1,0 +1,8 @@
+$NUM_ENTRIES = 6
+$BUILD_ID = PakChunks
+pakchunk1001-Windows.ucas	37162096	ver01	1001	/Windows/pakchunk1001-Windows.ucas
+pakchunk1002-Windows.ucas	151840	ver01	1002	/Windows/pakchunk1002-Windows.ucas
+pakchunk1001-Windows.utoc	14429	ver01	1001	/Windows/pakchunk1001-Windows.utoc
+pakchunk1002-Windows.utoc	1204	ver01	1002	/Windows/pakchunk1002-Windows.utoc
+pakchunk1001-Windows.pak	339	ver01	1001	/Windows/pakchunk1001-Windows.pak
+pakchunk1002-Windows.pak	339	ver01	1002	/Windows/pakchunk1002-Windows.pak
